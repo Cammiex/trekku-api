@@ -1,0 +1,28 @@
+GET http://localhost:5000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsIm5hbWUiOiJBcWlsIFJhaG1hdHVsbGFoIiwiZW1haWwiOiJlbWFpbEBtYWlsLmNvbSIsImlhdCI6MTcxNTQ2OTgyMCwiZXhwIjoxNzE1NDY5ODM1fQ.fITiFSLyl4SLUtHlJ44pOqx6w6VgApLT0rLHAFg0vOo
+
+###
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "name": "Aqil Rahmatullah",
+    "email": "email@mail.com",
+    "password": "123456",
+    "confPassword": "123456"
+}
+
+###
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email": "email@mail.com",
+    "password": "123456"
+}
+
+###
+GET http://localhost:5000/token
+
+###
+DELETE http://localhost:5000/logout
