@@ -1,6 +1,7 @@
 import Users from '../models/UserModel.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { where } from 'sequelize';
 
 export const getUsers = async (req, res) => {
   try {
@@ -10,6 +11,78 @@ export const getUsers = async (req, res) => {
     res.json(users);
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const getUsersById = async (req, res) => {
+  try {
+    const { userID } = req.params;
+    const results = await Users.findOne({
+      where: {
+        id: userID,
+      },
+      attributes: ['name', 'email', 'phone_number'],
+    });
+    if (!results) {
+      res.status(400).json({
+        msg: `User dengan ID: ${userID}, tidak ditemukan.`,
+      });
+      return;
+    }
+    res.status(200).json({
+      payload: {
+        msg: `Berikut data user dengan ID: ${userID}`,
+        datas: results,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateDataUser = async (req, res) => {
+  try {
+    const { userID } = req.params;
+    const { name, email, password, phone_number } = req.body;
+
+    // Validasi input
+    if (!email && !name && !password && !phone_number) {
+      return res.status(400).json({ msg: 'Tidak ada data yang diupdate.' });
+    }
+
+    const salt = await bcrypt.genSalt();
+    const hashPassword = await bcrypt.hash(password, salt);
+
+    // Buat objek data yang akan diupdate
+    const updateData = {};
+    if (name) updateData.name = name;
+    if (email) updateData.email = email;
+    if (hashPassword) updateData.password = hashPassword;
+    if (phone_number) updateData.phone_number = phone_number;
+
+    // Update data pengguna
+    const [updated] = await Users.update(updateData, {
+      where: { id: userID },
+    });
+
+    if (updated) {
+      const updatedUser = await Users.findOne({
+        where: { id: userID },
+        attributes: ['id', 'name', 'email', 'phone_number'],
+      });
+      return res.status(200).json({
+        msg: 'Data pengguna berhasil diupdate.',
+        data: updatedUser,
+      });
+    }
+
+    // Jika tidak ada baris yang diupdate
+    return res
+      .status(404)
+      .json({ msg: `User dengan ID: ${userID} tidak ditemukan.` });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: 'Terjadi kesalahan pada server.' });
   }
 };
 

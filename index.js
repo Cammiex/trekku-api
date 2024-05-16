@@ -4,12 +4,15 @@ import db from './config/db.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import router from './routes/index.js';
+import { initDatabase } from './utils/DatabaseInit.js';
 
 dotenv.config();
 const app = express();
+const PORT = process.env.PORT;
 
 try {
   await db.authenticate();
+  await initDatabase();
   console.log('Database Connected...');
 } catch (error) {
   console.error(error);
@@ -20,4 +23,4 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(router);
 
-app.listen(5000, () => console.log('Server is running on port 5000'));
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
