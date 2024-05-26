@@ -12,6 +12,7 @@ import { refreshToken } from '../controllers/RefreshToken.js';
 import {
   addProduct,
   deleteProduct,
+  editProduct,
   getProductById,
   getProducts,
 } from '../controllers/Products.js';
@@ -30,5 +31,6 @@ router.get('/products', getProducts);
 router.get('/products/:productID', getProductById);
 router.post('/products/add', addProduct);
 router.delete('/products/delete/:id', deleteProduct);
+router.patch('/products/update/:id', editProduct);
 
 export default router;
