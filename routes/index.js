@@ -9,6 +9,12 @@ import {
 } from '../controllers/Users.js';
 import { verifyToken } from '../middleware/VerifyToken.js';
 import { refreshToken } from '../controllers/RefreshToken.js';
+import {
+  addProduct,
+  deleteProduct,
+  getProductById,
+  getProducts,
+} from '../controllers/Products.js';
 
 const router = express.Router();
 
@@ -19,5 +25,10 @@ router.post('/users', register);
 router.post('/login', login);
 router.get('/token', refreshToken);
 router.delete('/logout', logout);
+
+router.get('/products', getProducts);
+router.get('/products/:productID', getProductById);
+router.post('/products/add', addProduct);
+router.delete('/products/delete/:id', deleteProduct);
 
 export default router;

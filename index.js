@@ -4,6 +4,7 @@ import db from './config/db.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import router from './routes/index.js';
+import fileUpload from 'express-fileupload';
 import { initDatabase } from './utils/DatabaseInit.js';
 
 dotenv.config();
@@ -21,6 +22,8 @@ try {
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(cookieParser());
 app.use(express.json());
+app.use(fileUpload());
+app.use(express.static('public'));
 app.use(router);
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
