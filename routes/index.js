@@ -6,6 +6,8 @@ import {
   register,
   login,
   logout,
+  addProfilePicture,
+  deleteProfilePicture,
 } from '../controllers/Users.js';
 import { verifyToken } from '../middleware/VerifyToken.js';
 import { refreshToken } from '../controllers/RefreshToken.js';
@@ -20,8 +22,10 @@ import {
 const router = express.Router();
 
 router.get('/users', verifyToken, getUsers);
-router.get('/users/:userID', verifyToken, getUsersById);
-router.put('/users/edit/:userID', updateDataUser);
+router.get('/users/:userID', getUsersById);
+router.patch('/users/edit/:userID', updateDataUser);
+router.patch('/users/edit/image/:userID', addProfilePicture);
+router.delete('/users/edit/delete-image/:userID', deleteProfilePicture);
 router.post('/users', register);
 router.post('/login', login);
 router.get('/token', refreshToken);

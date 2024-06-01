@@ -1,6 +1,8 @@
 import Users from '../models/UserModel.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import path from 'path';
+import fs from 'fs';
 
 export const getUsers = async (req, res) => {
   try {
@@ -20,7 +22,7 @@ export const getUsersById = async (req, res) => {
       where: {
         id: userID,
       },
-      attributes: ['name', 'email', 'phone_number'],
+      attributes: ['name', 'email', 'phone_number', 'url_profile_img'],
     });
     if (!results) {
       res.status(400).json({
@@ -49,15 +51,16 @@ export const updateDataUser = async (req, res) => {
       return res.status(400).json({ msg: 'Tidak ada data yang diupdate.' });
     }
 
-    const salt = await bcrypt.genSalt();
-    const hashPassword = await bcrypt.hash(password, salt);
-
     // Buat objek data yang akan diupdate
     const updateData = {};
     if (name) updateData.name = name;
     if (email) updateData.email = email;
-    if (hashPassword) updateData.password = hashPassword;
     if (phone_number) updateData.phone_number = phone_number;
+    if (password) {
+      const salt = await bcrypt.genSalt();
+      const hashPassword = await bcrypt.hash(password, salt);
+      updateData.password = hashPassword;
+    }
 
     // Update data pengguna
     const [updated] = await Users.update(updateData, {
@@ -168,4 +171,97 @@ export const logout = async (req, res) => {
   );
   res.clearCookie('refreshToken');
   return res.sendStatus(200);
+};
+
+export const addProfilePicture = async (req, res) => {
+  //validasi file gambar
+  const allowedType = ['.png', '.jpg', '.jpeg'];
+  const maxFileSize = 5000000; // 5 MB
+  let imageUrls = {};
+
+  const fileKey = `url_profile_img`;
+  const file = req.files?.[fileKey];
+  if (file) {
+    const fileSize = file.data.length;
+    const ext = path.extname(file.name);
+    const fileName = file.md5 + ext;
+    const url = `${req.protocol}://${req.get('host')}/images/${fileName}`;
+
+    if (!allowedType.includes(ext.toLowerCase())) {
+      return res.status(422).json({ msg: 'Invalid Images' });
+    }
+    if (fileSize > maxFileSize) {
+      return res.status(422).json({ msg: 'Image must be less than 5 MB' });
+    }
+
+    try {
+      const { userID } = req.params;
+      const user = await Users.findOne({ where: { id: userID } });
+      if (user && user.url_profile_img) {
+        const oldImagePath = `./public/images/${path.basename(
+          user.url_profile_img
+        )}`;
+        if (fs.existsSync(oldImagePath)) {
+          fs.unlinkSync(oldImagePath);
+        }
+      }
+
+      fs.writeFileSync(`./public/images/${fileName}`, file.data);
+      imageUrls[`url_profile_img`] = url;
+    } catch (error) {
+      console.log(error);
+      return res
+        .status(500)
+        .json({ msg: 'Terjadi kesalahan saat menyimpan gambar' });
+    }
+  } else {
+    imageUrls[`url_profile_img`] = null;
+  }
+
+  try {
+    const { userID } = req.params;
+    await Users.update(
+      { url_profile_img: imageUrls.url_profile_img },
+      {
+        where: {
+          id: userID,
+        },
+      }
+    );
+    res.status(200).json({ msg: 'Foto berhasil diganti.' });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteProfilePicture = async (req, res) => {
+  try {
+    const { userID } = req.params;
+    const user = await Users.findOne({ where: { id: userID } });
+
+    if (!user || !user.url_profile_img) {
+      return res.status(404).json({ msg: 'Gambar profil tidak ditemukan' });
+    }
+
+    const oldImagePath = `./public/images/${path.basename(
+      user.url_profile_img
+    )}`;
+    if (fs.existsSync(oldImagePath)) {
+      fs.unlinkSync(oldImagePath);
+    }
+
+    await Users.update(
+      { url_profile_img: null },
+      {
+        where: {
+          id: userID,
+        },
+      }
+    );
+
+    res.status(200).json({ msg: 'Foto profil berhasil dihapus.' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: 'Terjadi kesalahan saat menghapus gambar' });
+  }
 };

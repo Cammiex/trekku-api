@@ -114,6 +114,13 @@ const Products = db.define(
     quota: {
       type: DataTypes.INTEGER,
     },
+    organizer: {
+      type: DataTypes.STRING,
+    },
+    many_ordered: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
   },
   {
     freezeTableName: true,

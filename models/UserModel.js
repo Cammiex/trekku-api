@@ -15,6 +15,9 @@ const Users = db.define(
     password: {
       type: DataTypes.STRING,
     },
+    url_profile_img: {
+      type: DataTypes.STRING,
+    },
     phone_number: {
       type: DataTypes.STRING,
     },
