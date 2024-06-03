@@ -3,8 +3,8 @@ import db from '../config/db.js';
 
 const { DataTypes } = Sequelize;
 
-const ProductImage = db.define(
-  'product_img',
+const ArticleImage = db.define(
+  'article_img',
   {
     image: {
       type: DataTypes.STRING,
@@ -13,11 +13,13 @@ const ProductImage = db.define(
       type: DataTypes.STRING,
     },
   },
-  { freezeTableName: true }
+  {
+    freezeTableName: true,
+  }
 );
 
-ProductImage.associate = (models) => {
-  ProductImage.belongsTo(models.Products, { foreignKey: 'product_id' });
+ArticleImage.associate = (models) => {
+  ArticleImage.belongsTo(models.Articles, { foreignKey: 'article_id' });
 };
 
-export default ProductImage;
+export default ArticleImage;

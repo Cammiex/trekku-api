@@ -1,4 +1,4 @@
-import { Products, ProductImage } from '../models/AssociationProduct.js';
+import { Products, ProductImage } from '../models/Association.js';
 import path from 'path';
 import fs from 'fs';
 

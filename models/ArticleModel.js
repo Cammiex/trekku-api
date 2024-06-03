@@ -3,26 +3,23 @@ import db from '../config/db.js';
 
 const { DataTypes } = Sequelize;
 
-const Users = db.define(
-  'users',
+const Articles = db.define(
+  'articles',
   {
-    name: {
+    title: {
       type: DataTypes.STRING,
     },
-    email: {
+    writter_name: {
       type: DataTypes.STRING,
     },
-    password: {
+    text_head: {
       type: DataTypes.STRING,
     },
-    url_profile_img: {
+    text_body: {
       type: DataTypes.STRING,
     },
-    phone_number: {
+    text_footer: {
       type: DataTypes.STRING,
-    },
-    refresh_token: {
-      type: DataTypes.TEXT,
     },
   },
   {
@@ -30,8 +27,8 @@ const Users = db.define(
   }
 );
 
-Users.associate = (models) => {
-  Users.hasMany(models.Wishlist, { foreignKey: 'user_id' });
+Articles.associate = (models) => {
+  Articles.hasMany(models.ArticleImage, { foreignKey: 'article_id' });
 };
 
-export default Users;
+export default Articles;
