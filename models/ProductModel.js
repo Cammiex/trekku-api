@@ -56,6 +56,7 @@ const Products = db.define(
 Products.associate = (models) => {
   Products.hasMany(models.ProductImage, { foreignKey: 'product_id' });
   Products.hasMany(models.Wishlist, { foreignKey: 'product_id' });
+  Products.hasOne(models.Orders, { foreignKey: 'product_id' });
 };
 
 export default Products;

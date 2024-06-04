@@ -4,6 +4,11 @@ import Articles from './ArticleModel.js';
 import ArticleImage from './ArticleImageModel.js';
 import Wishlist from './WishlistModel.js';
 import Users from './UserModel.js';
+import Orders from './OrderModel.js';
+import Visitor from './VisitorModel.js';
+import Vouchers from './VoucherModel.js';
+import PaymentMethod from './PaymentMethodModel.js';
+import Orderer from './OrdererDataModel.js';
 
 const models = {
   Products,
@@ -12,13 +17,31 @@ const models = {
   ArticleImage,
   Wishlist,
   Users,
+  Orders,
+  Visitor,
+  Vouchers,
+  PaymentMethod,
+  Orderer,
 };
 
+//associator
 Object.values(models).forEach((model) => {
   if (model.associate) {
     model.associate(models);
   }
 });
 
-export { Products, ProductImage, Articles, ArticleImage, Wishlist, Users };
+export {
+  Products,
+  ProductImage,
+  Articles,
+  ArticleImage,
+  Wishlist,
+  Users,
+  Orders,
+  Visitor,
+  Vouchers,
+  PaymentMethod,
+  Orderer,
+};
 export default models;

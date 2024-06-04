@@ -24,6 +24,12 @@ import {
   getWishlistbyUserID,
   removeFromWishlist,
 } from '../controllers/Wishlist.js';
+import {
+  addOrder,
+  afterPayment,
+  getOrderById,
+  getUserOrder,
+} from '../controllers/Orders.js';
 
 const router = express.Router();
 
@@ -47,5 +53,12 @@ router.get('/wishlist', getSameWishlist);
 router.get('/wishlist/:id', getWishlistbyUserID);
 router.post('/wishlist', addToWishlist);
 router.delete('/wishlist', removeFromWishlist);
+
+// router.post('/order/orderer', addOrdererData);
+// router.post('/order/visitor', addVisitor);
+router.post('/order/add', addOrder);
+router.get('/order/:idOrder', getOrderById);
+router.put('/order/:idOrder', afterPayment);
+router.get('/order/user/:idUser', getUserOrder);
 
 export default router;

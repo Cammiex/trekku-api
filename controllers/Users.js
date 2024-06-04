@@ -1,4 +1,4 @@
-import Users from '../models/UserModel.js';
+import { Users } from '../models/Association.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import path from 'path';
