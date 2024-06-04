@@ -29,6 +29,9 @@ import {
   afterPayment,
   getOrderById,
   getUserOrder,
+  getUserOrderPending,
+  getUserOrderSucces,
+  getUsetOrderCancel,
 } from '../controllers/Orders.js';
 
 const router = express.Router();
@@ -60,5 +63,8 @@ router.post('/order/add', addOrder);
 router.get('/order/:idOrder', getOrderById);
 router.put('/order/:idOrder', afterPayment);
 router.get('/order/user/:idUser', getUserOrder);
+router.get('/order/user/success/:idUser', getUserOrderSucces);
+router.get('/order/user/pending/:idUser', getUserOrderPending);
+router.get('/order/user/cancel/:idUser', getUsetOrderCancel);
 
 export default router;

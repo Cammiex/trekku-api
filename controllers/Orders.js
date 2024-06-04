@@ -164,3 +164,78 @@ export const getUserOrder = async (req, res) => {
     console.log(error);
   }
 };
+
+export const getUserOrderSucces = async (req, res) => {
+  const { idUser } = req.params;
+
+  try {
+    const response = await Orders.findAll({
+      where: {
+        user_id: idUser,
+        status: 'success',
+      },
+      attributes: ['id', 'status', 'product_id', 'total_price', 'user_id'],
+      include: {
+        model: Products,
+        attributes: ['id', 'name', 'date', 'quota', 'many_ordered'],
+        include: {
+          model: ProductImage,
+          attributes: ['url_img'],
+        },
+      },
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getUserOrderPending = async (req, res) => {
+  const { idUser } = req.params;
+
+  try {
+    const response = await Orders.findAll({
+      where: {
+        user_id: idUser,
+        status: 'pending',
+      },
+      attributes: ['id', 'status', 'product_id', 'total_price', 'user_id'],
+      include: {
+        model: Products,
+        attributes: ['id', 'name', 'date', 'quota', 'many_ordered'],
+        include: {
+          model: ProductImage,
+          attributes: ['url_img'],
+        },
+      },
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getUsetOrderCancel = async (req, res) => {
+  const { idUser } = req.params;
+
+  try {
+    const response = await Orders.findAll({
+      where: {
+        user_id: idUser,
+        status: 'cancel',
+      },
+      attributes: ['id', 'status', 'product_id', 'total_price', 'user_id'],
+      include: {
+        model: Products,
+        attributes: ['id', 'name', 'date', 'quota', 'many_ordered'],
+        include: {
+          model: ProductImage,
+          attributes: ['url_img'],
+        },
+      },
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error);
+  }
+};
