@@ -35,6 +35,7 @@ import {
   getUsetOrderCancel,
   getVoucherByCode,
 } from '../controllers/Orders.js';
+import { getAllVoucher, getAllVoucherById } from '../controllers/Vouchers.js';
 
 const router = express.Router();
 
@@ -71,5 +72,7 @@ router.get('/order/user/cancel/:idUser', getUsetOrderCancel);
 router.put('/order/user/cancel/:idOrder', cancelOrder);
 
 router.post('/voucher', getVoucherByCode);
+router.get('/voucher', getAllVoucher);
+router.get('/voucher/:idVoucher', getAllVoucherById);
 
 export default router;
