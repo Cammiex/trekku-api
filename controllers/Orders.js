@@ -1,4 +1,4 @@
-import { where } from 'sequelize';
+import { Op } from 'sequelize';
 import {
   Orderer,
   Visitor,
@@ -6,7 +6,8 @@ import {
   Products,
   ProductImage,
   PaymentMethod,
-} from '../models/Association.js';
+  Vouchers,
+} from '../db/models/Association.js';
 
 export const addOrder = async (req, res) => {
   const {
@@ -141,6 +142,26 @@ export const afterPayment = async (req, res) => {
   }
 };
 
+export const cancelOrder = async (req, res) => {
+  const { idOrder } = req.params;
+
+  try {
+    await Orders.update(
+      {
+        status: 'cancel',
+      },
+      {
+        where: {
+          id: idOrder,
+        },
+      }
+    );
+    res.status(200).json({ msg: 'Pesanan dibatalkan' });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getUserOrder = async (req, res) => {
   const { idUser } = req.params;
 
@@ -236,6 +257,29 @@ export const getUsetOrderCancel = async (req, res) => {
     });
     res.status(200).json(response);
   } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getVoucherByCode = async (req, res) => {
+  const { code } = req.body;
+
+  try {
+    const voucher = await Vouchers.findOne({
+      where: {
+        code: {
+          [Op.eq]: code,
+        },
+      },
+    });
+
+    if (!voucher) {
+      res.status(400);
+    }
+
+    res.status(200).json(voucher);
+  } catch (error) {
+    res.status(400);
     console.log(error);
   }
 };

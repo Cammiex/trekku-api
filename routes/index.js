@@ -27,11 +27,13 @@ import {
 import {
   addOrder,
   afterPayment,
+  cancelOrder,
   getOrderById,
   getUserOrder,
   getUserOrderPending,
   getUserOrderSucces,
   getUsetOrderCancel,
+  getVoucherByCode,
 } from '../controllers/Orders.js';
 
 const router = express.Router();
@@ -66,5 +68,8 @@ router.get('/order/user/:idUser', getUserOrder);
 router.get('/order/user/success/:idUser', getUserOrderSucces);
 router.get('/order/user/pending/:idUser', getUserOrderPending);
 router.get('/order/user/cancel/:idUser', getUsetOrderCancel);
+router.put('/order/user/cancel/:idOrder', cancelOrder);
+
+router.post('/voucher', getVoucherByCode);
 
 export default router;

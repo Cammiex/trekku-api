@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import db from './config/db.js';
+import db from './db/config/db.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import router from './routes/index.js';

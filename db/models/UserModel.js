@@ -33,6 +33,7 @@ const Users = db.define(
 Users.associate = (models) => {
   Users.hasMany(models.Wishlist, { foreignKey: 'user_id' });
   Users.hasOne(models.Orders, { foreignKey: 'user_id' });
+  Users.hasMany(models.Reviews, { foreignKey: 'user_id' });
 };
 
 export default Users;

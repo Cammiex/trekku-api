@@ -1,4 +1,4 @@
-import { Products, ProductImage } from '../models/Association.js';
+import { Products, ProductImage } from '../db/models/Association.js';
 import path from 'path';
 import fs from 'fs';
 
@@ -61,6 +61,7 @@ export const addProduct = async (req, res) => {
     quota,
     organizer,
     many_ordeded,
+    url_location,
   } = req.body;
 
   //validasi file gambar
@@ -117,6 +118,7 @@ export const addProduct = async (req, res) => {
       quota: quota,
       organizer: organizer,
       many_ordeded: many_ordeded,
+      url_location: url_location,
     });
 
     const productImages = [];
@@ -207,6 +209,7 @@ export const editProduct = async (req, res) => {
     quota,
     organizer,
     many_ordeded,
+    url_location,
   } = req.body;
 
   //validasi file gambar
@@ -294,6 +297,7 @@ export const editProduct = async (req, res) => {
         quota: quota,
         organizer: organizer,
         many_ordeded: many_ordeded,
+        url_location: url_location,
       },
       {
         where: {

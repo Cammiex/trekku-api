@@ -1,4 +1,4 @@
-import { Users } from '../models/Association.js';
+import { Users } from '../db/models/Association.js';
 import jwt from 'jsonwebtoken';
 
 export const refreshToken = async (req, res) => {

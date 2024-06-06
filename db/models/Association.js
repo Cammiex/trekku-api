@@ -9,6 +9,7 @@ import Visitor from './VisitorModel.js';
 import Vouchers from './VoucherModel.js';
 import PaymentMethod from './PaymentMethodModel.js';
 import Orderer from './OrdererDataModel.js';
+import Reviews from './ReviewModel.js';
 
 const models = {
   Products,
@@ -22,6 +23,7 @@ const models = {
   Vouchers,
   PaymentMethod,
   Orderer,
+  Reviews,
 };
 
 //associator
@@ -43,5 +45,6 @@ export {
   Vouchers,
   PaymentMethod,
   Orderer,
+  Reviews,
 };
 export default models;

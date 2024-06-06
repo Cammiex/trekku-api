@@ -3,7 +3,7 @@ import {
   Products,
   Users,
   Wishlist,
-} from '../models/Association.js';
+} from '../db/models/Association.js';
 
 export const getSameWishlist = async (req, res) => {
   try {

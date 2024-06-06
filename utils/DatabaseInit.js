@@ -1,14 +1,15 @@
-import ProductImage from '../models/ProductImageModel.js';
-import Products from '../models/ProductModel.js';
-import Users from '../models/UserModel.js';
-import Articles from '../models/ArticleModel.js';
-import ArticleImage from '../models/ArticleImageModel.js';
-import Wishlist from '../models/WishlistModel.js';
-import Orders from '../models/OrderModel.js';
-import Visitor from '../models/VisitorModel.js';
-import Vouchers from '../models/VoucherModel.js';
-import PaymentMethod from '../models/PaymentMethodModel.js';
-import Orderer from '../models/OrdererDataModel.js';
+import ProductImage from '../db/models/ProductImageModel.js';
+import Products from '../db/models/ProductModel.js';
+import Users from '../db/models/UserModel.js';
+import Articles from '../db/models/ArticleModel.js';
+import ArticleImage from '../db/models/ArticleImageModel.js';
+import Wishlist from '../db/models/WishlistModel.js';
+import Orders from '../db/models/OrderModel.js';
+import Visitor from '../db/models/VisitorModel.js';
+import Vouchers from '../db/models/VoucherModel.js';
+import PaymentMethod from '../db/models/PaymentMethodModel.js';
+import Orderer from '../db/models/OrdererDataModel.js';
+import Reviews from '../db/models/ReviewModel.js';
 
 export const initDatabase = async () => {
   try {
@@ -23,6 +24,7 @@ export const initDatabase = async () => {
     await Orders.sync();
     await Visitor.sync();
     await Orderer.sync();
+    await Reviews.sync();
     console.log('Database synchronized successfully.');
   } catch (error) {
     console.error('Error synchronizing database:', error);

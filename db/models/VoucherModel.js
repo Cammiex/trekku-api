@@ -1,10 +1,15 @@
 import { Sequelize } from 'sequelize';
 import db from '../config/db.js';
-import models from './Association.js';
 
 const { DataTypes } = Sequelize;
 
 const Vouchers = db.define('voucher', {
+  voucher_name: {
+    type: DataTypes.STRING,
+  },
+  url_img: {
+    type: DataTypes.STRING,
+  },
   code: {
     type: DataTypes.STRING,
   },
