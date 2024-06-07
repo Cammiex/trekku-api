@@ -4,6 +4,9 @@ import db from '../config/db.js';
 const { DataTypes } = Sequelize;
 
 const Reviews = db.define('reviews', {
+  name: {
+    type: DataTypes.STRING,
+  },
   comment: {
     type: DataTypes.TEXT,
   },

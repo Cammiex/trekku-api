@@ -36,6 +36,11 @@ import {
   getVoucherByCode,
 } from '../controllers/Orders.js';
 import { getAllVoucher, getAllVoucherById } from '../controllers/Vouchers.js';
+import {
+  getAllReviews,
+  getProductReviews,
+  sendReviews,
+} from '../controllers/Reviews.js';
 
 const router = express.Router();
 
@@ -74,5 +79,9 @@ router.put('/order/user/cancel/:idOrder', cancelOrder);
 router.post('/voucher', getVoucherByCode);
 router.get('/voucher', getAllVoucher);
 router.get('/voucher/:idVoucher', getAllVoucherById);
+
+router.get('/review', getAllReviews);
+router.post('/review', sendReviews);
+router.get('/review/:idProduct', getProductReviews);
 
 export default router;

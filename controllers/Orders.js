@@ -63,7 +63,7 @@ export const getOrderById = async (req, res) => {
       include: [
         {
           model: Products,
-          attributes: ['id', 'name', 'date'],
+          attributes: ['id', 'name', 'date', 'location'],
           include: {
             model: ProductImage,
             attributes: ['url_img'],
@@ -173,7 +173,7 @@ export const getUserOrder = async (req, res) => {
       attributes: ['id', 'status', 'product_id', 'total_price', 'user_id'],
       include: {
         model: Products,
-        attributes: ['id', 'name', 'date', 'quota', 'many_ordered'],
+        attributes: ['id', 'name', 'date', 'quota', 'many_ordered', 'location'],
         include: {
           model: ProductImage,
           attributes: ['url_img'],
@@ -198,7 +198,7 @@ export const getUserOrderSucces = async (req, res) => {
       attributes: ['id', 'status', 'product_id', 'total_price', 'user_id'],
       include: {
         model: Products,
-        attributes: ['id', 'name', 'date', 'quota', 'many_ordered'],
+        attributes: ['id', 'name', 'date', 'quota', 'many_ordered', 'location'],
         include: {
           model: ProductImage,
           attributes: ['url_img'],
@@ -223,7 +223,7 @@ export const getUserOrderPending = async (req, res) => {
       attributes: ['id', 'status', 'product_id', 'total_price', 'user_id'],
       include: {
         model: Products,
-        attributes: ['id', 'name', 'date', 'quota', 'many_ordered'],
+        attributes: ['id', 'name', 'date', 'quota', 'many_ordered', 'location'],
         include: {
           model: ProductImage,
           attributes: ['url_img'],
@@ -248,7 +248,7 @@ export const getUsetOrderCancel = async (req, res) => {
       attributes: ['id', 'status', 'product_id', 'total_price', 'user_id'],
       include: {
         model: Products,
-        attributes: ['id', 'name', 'date', 'quota', 'many_ordered'],
+        attributes: ['id', 'name', 'date', 'quota', 'many_ordered', 'location'],
         include: {
           model: ProductImage,
           attributes: ['url_img'],
