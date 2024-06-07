@@ -13,13 +13,13 @@ const Articles = db.define(
       type: DataTypes.STRING,
     },
     text_head: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     text_body: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     text_footer: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
   },
   {

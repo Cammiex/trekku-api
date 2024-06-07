@@ -41,6 +41,7 @@ import {
   getProductReviews,
   sendReviews,
 } from '../controllers/Reviews.js';
+import { addArticle, getAllArticle } from '../controllers/Articles.js';
 
 const router = express.Router();
 
@@ -83,5 +84,8 @@ router.get('/voucher/:idVoucher', getAllVoucherById);
 router.get('/review', getAllReviews);
 router.post('/review', sendReviews);
 router.get('/review/:idProduct', getProductReviews);
+
+router.get('/article', getAllArticle);
+router.post('/article', addArticle);
 
 export default router;
