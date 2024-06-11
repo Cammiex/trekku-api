@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "new2_db",
+    "database": "railway",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
