@@ -5,9 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "npm run seed && node server.js",
-    "seed": "npx sequelize-cli db:seed:all",
-    "postinstall": "npm run seed",
+    "start": "node ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "nodemon ./server.js"
   },
