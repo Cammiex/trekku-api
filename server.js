@@ -22,7 +22,7 @@ const startServer = async () => {
   }
 
   // app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
-  const allowedOrigins = ['http://localhost:3000', 'http://another-origin.com'];
+  const allowedOrigins = ['http://localhost:3000', 'https://trekku.vercel.app'];
   app.use(
     cors({
       credentials: true,
