@@ -1,10 +1,30 @@
 import { ArticleImage, Articles } from '../db/models/Association.js';
 import path from 'path';
 import fs from 'fs';
+import { where } from 'sequelize';
 
 export const getAllArticle = async (req, res) => {
   try {
     const response = await Articles.findAll({
+      include: {
+        model: ArticleImage,
+      },
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(404);
+    console.log(error);
+  }
+};
+
+export const getArticleById = async (req, res) => {
+  const { idArticle } = req.params;
+
+  try {
+    const response = await Articles.findOne({
+      where: {
+        id: idArticle,
+      },
       include: {
         model: ArticleImage,
       },

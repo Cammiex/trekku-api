@@ -7,11 +7,14 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependency directories
 /node_modules
 dist
 dist-ssr
+
+# Local environment files
 *.local
-request.rest
+.env
 
 # Editor directories and files
 .vscode/*
@@ -23,5 +26,6 @@ request.rest
 *.njsproj
 *.sln
 *.sw?
-.env
+
+# Miscellaneous
 request.rest

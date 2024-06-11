@@ -34,8 +34,7 @@ module.exports = {
         },
         {
           id: 3,
-          title:
-            'Keindahan Taman Nasional Komodo, Petualangan di Timur Indonesia',
+          title: 'Taman Nasional Komodo, Petualangan di Timur Indonesia',
           writter_name: 'Dewi Lestari',
           text_head:
             'Taman Nasional Komodo adalah salah satu destinasi wisata paling populer di Indonesia yang menawarkan keindahan alam dan petualangan. Terletak di antara provinsi Nusa Tenggara Timur dan Nusa Tenggara Barat, taman nasional ini dikenal dengan populasi komodo yang menjadi daya tarik utama. Selain itu, Taman Nasional Komodo juga menawarkan pemandangan alam yang menakjubkan, dengan pantai berpasir putih, perairan biru jernih, dan bukit-bukit hijau yang mempesona. Para wisatawan dapat menikmati berbagai aktivitas seperti trekking, snorkeling, dan menyelam. Tidak heran jika taman nasional ini menjadi tujuan favorit bagi wisatawan lokal dan mancanegara.',
