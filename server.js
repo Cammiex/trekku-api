@@ -21,7 +21,21 @@ const startServer = async () => {
     process.exit(1); // Exit process with failure
   }
 
-  app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+  // app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+  const allowedOrigins = ['http://localhost:3000', 'http://another-origin.com'];
+  app.use(
+    cors({
+      credentials: true,
+      origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
+    })
+  );
+
   app.use(cookieParser());
   app.use(express.json());
   app.use(fileUpload());
