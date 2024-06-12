@@ -8,8 +8,7 @@
     "start": "node ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "nodemon ./server.js",
-    "unseed": "sequelize db:seed:undo:all",
-    "prod": "sequelize db:seed:undo:all && sequelize db:seed:all && node ./server.js"
+    "prod": "npx sequelize-cli db:seed:undo:all && npx sequelize-cli db:seed:all && node ./server.js"
   },
   "author": "",
   "license": "ISC",
