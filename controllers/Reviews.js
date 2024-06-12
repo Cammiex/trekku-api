@@ -2,7 +2,12 @@ import { Reviews, Users } from '../db/models/Association.js';
 
 export const getAllReviews = async (req, res) => {
   try {
-    const response = await Reviews.findAll();
+    const response = await Reviews.findAll({
+      include: {
+        model: Users,
+        attributes: ['name', 'url_profile_img'],
+      },
+    });
     res.status(200).json(response);
   } catch (error) {
     res.status(400);
