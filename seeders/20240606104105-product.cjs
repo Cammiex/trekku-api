@@ -749,7 +749,7 @@ module.exports = {
         {
           id: 9,
           name: 'Wisata Banda Neira',
-          location: 'Bali',
+          location: 'Maluku Tengah',
           desc_information:
             'Bergabunglah dengan paket wisata "Petualangan Banda Neira" dan nikmati eksplorasi yang mendalam ke keindahan alam dan sejarah yang kaya di Banda Neira dan sekitarnya. Dalam perjalanan ini, Anda akan menjelajahi destinasi menarik melalui jalur darat dan laut, memungkinkan Anda untuk merasakan petualangan yang tak terlupakan. Titik kumpul kami tersedia di kota-kota besar yang dilalui, dengan titik awal dari Jakarta.',
           desc_destination:
